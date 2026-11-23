@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Гайд первокурсника ИРИТ-РТФ УрФУ</title>
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; max-width: 720px; margin: 40px auto; padding: 0 20px; background: #f4f6fb; color: #1e293b; }
+    .header { background: linear-gradient(135deg, #2563eb, #7c3aed); color: white; padding: 28px; border-radius: 16px; margin-bottom: 24px; }
+    .header h1 { margin: 0 0 8px 0; font-size: 26px; }
+    .card { background: white; padding: 20px; border-radius: 14px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    h2 { margin-top: 0; font-size: 18px; color: #2563eb; }
+    label { display: flex; align-items: center; gap: 10px; padding: 8px 0; cursor: pointer; font-size: 15px; }
+    input[type="checkbox"] { width: 18px; height: 18px; accent-color: #2563eb; }
+    .done { text-decoration: line-through; color: #94a3b8; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>🎓 Чек-лист первокурсника ИРИТ-РТФ</h1>
+    <p>Всё, что нужно настроить и не забыть в первом семестре УрФУ</p>
+  </div>
+
+  <div class="card">
+    <h2>💻 Учёба и сервисы УрФУ</h2>
+    <label><input type="checkbox"> Активировать личный кабинет студента (istudent.urfu.ru)</label>
+    <label><input type="checkbox"> Зайти в Moodle (elearn.urfu.ru) и проверить доступ к курсам</label>
+    <label><input type="checkbox"> Разобраться с баллами в БРС (brs.urfu.ru)</label>
+    <label><input type="checkbox"> Настроить Git и создать аккаунт на GitHub</label>
+  </div>
+
+  <div class="card">
+    <h2>🏢 Навигация и кампус (Мира, 32)</h2>
+    <label><input type="checkbox"> Запомнить, как не заблудиться между Р-корпусом и ГУКом</label>
+    <label><input type="checkbox"> Оформить кампусную карту и пропуск в учебные корпуса</label>
+    <label><input type="checkbox"> Найти лучшие коворкинги и розетки на 2 и 3 этажах РТФ</label>
+  </div>
+
+  <div class="card">
+    <h2>🚀 Внеучебка и ИТ-движуха</h2>
+    <label><input type="checkbox"> Подписаться на каналы студсовета ИРИТ-РТФ и хакатонов Екб</label>
+    <label><input type="checkbox"> Собрать первую команду из 3–5 человек на осенний хакатон</label>
+  </div>
+
+  <script>
+    document.querySelectorAll('input[type="checkbox"]').forEach((box, idx) => {
+      box.checked = localStorage.getItem('urfu_check_' + idx) === 'true';
+      if (box.checked) box.parentElement.classList.add('done');
+      box.addEventListener('change', () => {
+        localStorage.setItem('urfu_check_' + idx, box.checked);
+        box.parentElement.classList.toggle('done', box.checked);
+      });
+    });
+  </script>
+</body>
+</html>
